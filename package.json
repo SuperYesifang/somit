@@ -1,0 +1,38 @@
+{
+  "name": "somit",
+  "version": "0.0.1",
+  "description": "This is a tiny event emitter/listener.",
+  "main": "./src/index.js",
+  "scripts": {
+    "build": "npx webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SuperYesifang/somit.git"
+  },
+  "keywords": [
+    "somit",
+    "mitt",
+    "emit",
+    "emitter",
+    "pubsub",
+    "listener",
+    "event"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SuperYesifang/somit/issues"
+  },
+  "homepage": "https://github.com/SuperYesifang/somit#readme",
+  "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.5",
+    "html-webpack-plugin": "^5.5.0",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.8.1"
+  },
+  "dependencies": {}
+}
