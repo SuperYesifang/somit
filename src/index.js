@@ -1,3 +1,4 @@
+import Somit from "./Somit";
 export { Somit } from "./Somit";
 
 export default function somit(...args) {
