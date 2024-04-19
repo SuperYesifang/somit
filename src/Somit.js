@@ -1,6 +1,6 @@
 export class Somit {
-	constructor({ ingoreError=false, lazyTime=1500 }={}) {
-		this.ingoreError = ingoreError ?? false;
+	constructor({ ignoreError=false, lazyTime=1500 }={}) {
+		this.ignoreError = ignoreError ?? false;
 		this.lazyTime = lazyTime ?? 1500;
 		this.mittGroup = {};
 		this.lazyGroup = {};
@@ -30,7 +30,7 @@ export class Somit {
 				} else {
 					delete this.mittGroup[event];
 				}
-			} else if (!this.ingoreError) {
+			} else if (!this.ignoreError) {
 				throw new Error(`event '${String(event)}' it doesn't exist`);
 			}
 		} else if (Array.isArray(event)) {
@@ -40,8 +40,10 @@ export class Somit {
 	emit(event, ...args) {
 		if (typeof event === "string" || typeof event === "symbol") {
 			if (this.mittGroup[event]) {
-				return this.mittGroup[event].map(cb => cb(...args));
-			} else if(!this.ingoreError) {
+				let results = this.mittGroup[event].map(cb => cb(...args));
+				if (results.length > 1) return results;
+				else return results[0];
+			} else if(!this.ignoreError) {
 				throw new Error(`event '${String(event)}' it doesn't exist`);
 			}
 		} else if (Array.isArray(event)) {
@@ -57,7 +59,7 @@ export class Somit {
 			if (this.mittGroup[event]) {
 				this.lazyGroup[event] = { fn: this.emit.bind(this, event, ...args) };
 				this.lazyGroup[event].timer = setTimeout(() => res(this.lazyGroup[event].fn()), this.lazyTime);
-			} else if (!this.ingoreError) {
+			} else if (!this.ignoreError) {
 				throw new Error(`event '${String(event)}' it doesn't exist`);
 			}
 		});

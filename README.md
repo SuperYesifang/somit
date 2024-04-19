@@ -39,7 +39,7 @@ somitter.off(["say", "laugh"]); // log out all say and laugh listeners
 ```
 
 ### emit()
-`somitter.emit(event:string|string[], arg1:any, arg2:any, ...):any[]`
+`somitter.emit(event:string|string[], arg1:any, arg2:any, ...):promise|promise[]`
 
 emitter event.
 ```js
@@ -48,7 +48,7 @@ somitter.emit(["say", "laugh"], "Petter", "Hello World"); // emit say and laugh 
 ```
 
 ### lazyEmit()
-`somitter.lazyEmit(event:string|string[], arg1:any, arg2:any, ..):any[]`
+`somitter.lazyEmit(event:string|string[], arg1:any, arg2:any, ..):promise|promise[]`
 
 lazy emitter event.
 ```js
@@ -61,6 +61,6 @@ somitter.lazyEmit("say", "Petter", "Hello China"); // emit say even
 ```js
 {
 	lazyTime: 1500, // lazyEmit delay time, default 1500ms
-	ingoreError: false // ingore null event error report, default false
+	ignoreError: false // ingore null event error report, default false
 }
 ```
