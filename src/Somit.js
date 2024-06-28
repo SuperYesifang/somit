@@ -7,7 +7,7 @@ export class Somit {
 		this.debug = debug;
 	}
 	on(event, callback) {
-		if (this.debug) console.log(`【Somit】debug::call on(event, callback)`, event, back);
+		if (this.debug) console.log(`【Somit】debug::call on(event, callback)`, event, callback);
 		if (callback) {
 			if (typeof event === "string" || typeof event === "symbol") {
 				if (this.mittGroup[event]) {
@@ -21,7 +21,7 @@ export class Somit {
 		}
 	}
 	off(event, callback) {
-		if (this.debug) console.log(`【Somit】debug::call off(event, callback)`, event, back);
+		if (this.debug) console.log(`【Somit】debug::call off(event, callback)`, event, callback);
 		if (typeof event === "string" || typeof event === "symbol") {
 			if (this.mittGroup[event]) {
 				if (callback !== void 0) {
