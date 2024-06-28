@@ -1,11 +1,13 @@
 export class Somit {
-	constructor({ ignoreError=false, lazyTime=1500 }={}) {
+	constructor({ ignoreError=false, lazyTime=1500, debug=false }={}) {
 		this.ignoreError = ignoreError ?? false;
 		this.lazyTime = lazyTime ?? 1500;
 		this.mittGroup = {};
 		this.lazyGroup = {};
+		this.debug = debug;
 	}
 	on(event, callback) {
+		if (this.debug) console.log(`【Somit】debug::call on(event, callback)`, event, back);
 		if (callback) {
 			if (typeof event === "string" || typeof event === "symbol") {
 				if (this.mittGroup[event]) {
@@ -19,6 +21,7 @@ export class Somit {
 		}
 	}
 	off(event, callback) {
+		if (this.debug) console.log(`【Somit】debug::call off(event, callback)`, event, back);
 		if (typeof event === "string" || typeof event === "symbol") {
 			if (this.mittGroup[event]) {
 				if (callback !== void 0) {
@@ -38,6 +41,7 @@ export class Somit {
 		}
 	}
 	emit(event, ...args) {
+		if (this.debug) console.log(`【Somit】debug::call emit(event, args...)`, event, ...args);
 		if (typeof event === "string" || typeof event === "symbol") {
 			if (this.mittGroup[event]) {
 				let results = this.mittGroup[event].map(cb => cb(...args));
@@ -51,6 +55,7 @@ export class Somit {
 		}
 	}
 	lazyEmit(event, ...args) {
+		if (this.debug) console.log(`【Somit】debug::call lazyEmit(event, args...)`, event, ...args);
 		return new Promise(res => {
 			if (this.lazyGroup[event]) {
 				clearTimeout(this.lazyGroup[event].timer);
